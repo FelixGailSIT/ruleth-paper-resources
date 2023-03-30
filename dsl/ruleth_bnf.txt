@@ -1,0 +1,21 @@
+<S>::="rule",identifier,"class",{number},"window",{number},":","{",bool_exp,"}";
+
+<bool_exp>::=<logical_exp>|<relational_exp>|"true"|"false";
+<logical_exp>::=("and"|"or"),"(",<bool_exp>,",",<bool_exp>,")"|"not","(",<bool_exp>,")";
+<relational_exp>::=("lt"|"eq"),"(",<value_exp>,","<value_exp>,")";
+<value_exp>::=("diff","(",<value_exp>,",",<value_exp>")")|
+    "if","(",<bool_exp>,",",<value_exp>,",",<value_exp>,")"|
+    "packet","[",<range_exp>,"]",".",<field_sel>|{<number>}|<letter>;
+ 
+<field_sel>::="someip",".",<someip_sel>|"sd",".",<someip_sd_sel>|"ip",".",<ip_sel>|"proto",".",<proto_sel>|"eth",".",<eth_sel>|<timestamp>;
+<someip_sel>::="proto_ver"|"interface_ver"|"service_id"|"method_id"|"client_id"|"session_id"|"length"|"message_type"|"return_code"|"payload","[",<range_exp>,"]";
+<someip_sd_sel>::="entries_length"|"options_length"|"entry","[",<range_exp>,"]",".",<sd_entry_op>|"option","[",<range_exp>,"]",".",<sd_option_op>;
+<ip_sel>::="src"|"dst"|"ttl"|"id"|"flags";
+<proto_sel>::="src"|"dst"|"is_tcp"|"is_udp";
+<eth_sel>::="src"|"dst";
+<sd_entry_op>::="type"|"foi"|"soi"|"foa"|"soa"|"service_id"|"instance_id"|"major_ver"|"ttl"|"minor_ver"|"idrf"|"ctr"|"evt_grp_id";
+<sd_option_op>::="type"|"priority"|"weight"|"port"|"proto"|"ip"|"config";
+
+<range_exp>="any"|"all"|{<number>}|<letter>;
+<identifier>=<letter>,[<letter>|<number>];
+\end{lstlisting}
