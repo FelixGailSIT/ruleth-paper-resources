@@ -18,4 +18,3 @@
 
 <range_exp>="any"|"all"|{<number>}|<letter>;
 <identifier>=<letter>,[<letter>|<number>];
-\end{lstlisting}
